@@ -10,5 +10,5 @@ public interface ArticleRepository {
 
     public List<Article> getArticlesByCat(String cat);
 
-    public List<Article> getArticleById(int id);
+    public Article getArticleById(int id);
 }

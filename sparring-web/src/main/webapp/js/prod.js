@@ -15,8 +15,8 @@ $(document).ready(function(){
       url: 'http://localhost:8081/articles/' + idp,
 
       success: function(data){
-          $('#tbodyid').append('<h2 class="name">' + data[0][5] + '</h2>' + '<hr>' + '<h3 class="price-container">'+ '$' + data[0][4] + '<small>' + ' *includes tax'+'</small>'+'</h3>'+'<hr>'+'<div class="description description-tabs">'+'<ul id="myTab" class="nav nav-pills">'+'<li class="active">'+'</li>'+'</ul>'+'<div id="myTabContent" class="tab-content">'+'<div class="tab-pane fade active in" id="more-information">'+'<br>'+'<strong>'+'Product description'+'</strong>'+'<p>' + data[0][2] + '</div>'+'</div>'+'</div>'+'<hr>');
-          $('#imgp').append('<div class="item active">'+'<img width=400 height=280 src="'+ data[0][3] +'" alt="">'+'</div>');
+          $('#tbodyid').append('<h2 class="name">' + data["title"] + '</h2>' + '<hr>' + '<h3 class="price-container">'+ '$' + data["price"] + '<small>' + ' *includes tax'+'</small>'+'</h3>'+'<hr>'+'<div class="description description-tabs">'+'<ul id="myTab" class="nav nav-pills">'+'<li class="active">'+'</li>'+'</ul>'+'<div id="myTabContent" class="tab-content">'+'<div class="tab-pane fade active in" id="more-information">'+'<br>'+'<strong>'+'Product description'+'</strong>'+'<p>' + data["description"] + '</div>'+'</div>'+'</div>'+'<hr>');
+          $('#imgp').append('<div class="item active">'+'<img width=400 height=280 src="'+ data["image"] +'" alt="">'+'</div>');
       }
     });
 });  

@@ -32,7 +32,7 @@ public class ArticleController {
     /* get article by id */
     @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
-    public List<Article> getArticleById(@PathVariable("id") int id) {
+    public Article getArticleById(@PathVariable("id") int id) {
         return articleRepository.getArticleById(id);
     }
 

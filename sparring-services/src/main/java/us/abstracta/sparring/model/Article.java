@@ -1,18 +1,7 @@
 package us.abstracta.sparring.model;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="articles")
-@EntityListeners(AuditingEntityListener.class)
 public class Article {
 
-    @Id
     private int id;
 
     private String category;
