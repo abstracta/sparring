@@ -22,6 +22,14 @@ services:
     - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/sparringdb
     - SPRING_DATASOURCE_USERNAME=root
     - SPRING_DATASOURCE_PASSWORD=abstracta
+  admin:
+    image: sparring/sparring-admin
+    ports:
+      - 8082:8080
+  web-admin:
+    image: sparring/sparring-web-admin
+    ports:
+    - 8083:80
 
 volumes:
   db-data:
