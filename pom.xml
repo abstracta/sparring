@@ -16,10 +16,12 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <modules>        
+    <modules>
+        <module>sparring-admin</module>
         <module>sparring-db</module>
         <module>sparring-services</module>
         <module>sparring-web</module>
+        <module>sparring-web-admin</module>
     </modules>
 
 

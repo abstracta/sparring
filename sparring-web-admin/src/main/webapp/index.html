@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Sparring Admin</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/latofonts.css" rel="stylesheet" type="text/css">
+  <link href="css/latostyle.css" rel="stylesheet" type="text/css">
+  <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 800px) {
+        #carouselExampleIndicators {
+            display: none;
+        }
+    }
+
+    body {
+      font-size: 11pt;
+      color: #868688;
+      background-color: #FAFCFF;
+    }
+    nav {
+      background: rgba(41,43,44,1);
+    }          
+
+    #cat {
+      background: rgba(41,43,44,1);
+      color:white;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    nav a {
+      color:white;
+      font-size: 16px;
+      font-weight: bold;
+    }      
+
+    #itemc {
+      font-size: 20px;
+      font-weight: bold;
+      color: #666;
+    }
+    nav a:hover {
+      color: #21E8CB;
+      text-decoration: none;
+    }     
+    .navbar-toggle .icon-bar {
+      background-color: #868688;
+    }
+    .starter-template {
+      padding: 40px 15px;
+      text-align: center;
+    }
+    input {
+      margin-top: 15px;
+      min-width: 450px;
+      padding: 5px;
+    }
+
+
+    .navbar-toggleable-md > .container{
+      align-self: flex-start;
+    }      
+
+    #contcar{
+      position: absolute;
+      display: block;
+      left: calc(50% - 450px);
+      top: 22%;
+      z-index: 2;
+      margin-left: auto !important;
+      margin-right: auto;
+      align-items:center !important;
+      width: 900px;
+    }
+
+
+    .carousel-control-prev{
+      left: -10%;
+    }      
+    .carousel-control-next{
+      right: -10%;
+    }
+
+    #contcont, #contcont2{
+      margin-top: 5%;
+    }
+
+    #contcont3{
+      margin-top: 5%;
+      margin-bottom:5%;
+    }
+
+    #article{
+      line-height: 1.5rem;
+      height: 4.7rem;
+      overflow: hidden;
+      text-overflow: -o-ellipsis-lastline;
+    }
+
+    h2.grrrr {
+        display: table;
+        white-space: nowrap;
+    &:after {
+          border-top: 3px solid black;
+          content: '';
+          display: table-cell;
+          position: relative;
+          top: 0.8em;
+          width: 30%;
+        }
+        &:after { left: 1.5%; }
+    }
+
+    h4.grrrr {
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    h4.grrrr:after {
+      display: inline-block;
+      content: "";
+      height: 2px;
+      background: white;
+      position: absolute;
+      width: 22%;
+      top: 50%;
+      margin-top: 2px;
+      margin-left: 15px;
+    }
+
+    .py-5 {
+        padding-bottom: 1rem !important;
+        padding-top: 1rem !important;
+    }
+
+    .slide-image {
+    width: 100%;
+    }
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 0px !important;
+    }
+
+    .navbar-nav{
+      display: flex;
+    }
+
+    .navbar-toggleable-md .navbar-nav {
+      -moz-box-direction: normal;
+      -moz-box-orient: horizontal;
+      flex-direction: row;
+    }
+
+    .ml-auto{
+      margin-left:auto !important;
+    }
+    .navbar-collapse{
+      flex-basis:20% !important;
+    }
+
+    .navbar-toggleable-md .navbar-nav .nav-link {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .navbar-toggleable-md .navbar-collapse {
+      width: 100%;
+    }
+
+    #narvbarx{
+      align-items:baseline !important;
+    }
+
+    input {
+        min-width: 45px;
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+  <nav style="height:60px" id="narvbarx" class="navbar navbar-toggleable-md bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="navbar-collapse" id="navbarExample">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>                                                              
+          </ul>
+      </div>
+  </nav>
+        
+    
+    <div class="container" id="contcont">
+        <div class="row">
+            <div class="col-lg-9">
+                <h3> Active Issues</h3>
+                <div class="row" id="activeIssues">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="contcont2">
+        <div class="row">
+            <div class="col-lg-9">
+                <h3> Inactive Issues</h3>
+                <div class="row" id="inactiveIssues">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="contcont3">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6"><a href="#" onclick="restart()" class="btn btn-primary btn-lg">Restart Application</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="confirm-activate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirm Activation
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to activate this issue?
+                    <br>
+                    Take into consideration that the server will be restarted.
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" id="activate" class="btn btn-success success">Activate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirm-deactivate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirm Activation
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to deactivate this issue?
+                    <br>
+                    Take into consideration that the server will be restarted.
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" id="deactivate" class="btn btn-danger success">Deactivate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+   
+
+    <footer class="py-5 bg-inverse">
+            <p class="m-0 text-center text-white">Copyright &copy; Sparring 2019</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+
+</body>
+
+</html>
