@@ -17,7 +17,7 @@ public class BadSqlDAO extends DAOIssue{
 
 
     public void setOn(){
-        final String uri = "http://services:8080/setIssue/{issue}/{value}";
+        final String uri = "http://sparring:8081/setIssue/{issue}/{value}";
 
         Map<String, String> params = new HashMap<>();
         params.put("issue", "articleDAO");
@@ -30,7 +30,7 @@ public class BadSqlDAO extends DAOIssue{
     }
 
     public void setOff(){
-        final String uri = "http://services:8080/setIssue/{issue}/{value}";
+        final String uri = "http://sparring:8081/setIssue/{issue}/{value}";
 
         Map<String, String> params = new HashMap<>();
         params.put("issue", "articleDAO");
