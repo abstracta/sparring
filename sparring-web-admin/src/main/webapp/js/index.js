@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8082/issues/inactive',
+    url: 'http://sparring:8082/issues/inactive',
     success: function(data){
       if ((!$.trim(data))){
         $('#inactiveIssues').append(' <div class="col-sm-12 col-md-6 col-lg-6"> <p> There are no inactive issues. </p> </div>');
@@ -17,7 +17,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8082/issues/active',
+    url: 'http://sparring:8082/issues/active',
     success: function(data){
       if ((!$.trim(data))){
         $('#activeIssues').append(' <div class="col-sm-12 col-md-6 col-lg-6"> <p> There are no active issues. </p> </div>');
@@ -33,7 +33,7 @@ $(document).ready(function(){
 function restart(){
   $.ajax({
     type:'POST',
-    url: 'http://localhost:8081/restart',
+    url: 'http://sparring:8081/restart',
     success: function(data){
         alert("Application was restarted")
     }
