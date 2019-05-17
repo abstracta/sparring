@@ -5,14 +5,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BadSqlDAO extends DAOIssue {
-
+public class MemoryLeakIssue extends ControllerIssue {
     private boolean on;
-    private String name="BadSqlDAO";
+    private String name="MemoryLeak";
     private String description;
 
-    public BadSqlDAO(){
-        setDescription("Use of inefficient SQL queries in order to increase response time");
+    public MemoryLeakIssue(){
+        setDescription("Generates a Memory Leak issue");
     }
 
 
@@ -20,8 +19,8 @@ public class BadSqlDAO extends DAOIssue {
         final String uri = "http://web:8080/setIssue/{issue}/{value}";
 
         Map<String, String> params = new HashMap<>();
-        params.put("issue", "articleDAO");
-        params.put("value", "BadSql");
+        params.put("issue", "controller");
+        params.put("value", "MemoryLeak");
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put ( uri, null, params);
@@ -33,8 +32,8 @@ public class BadSqlDAO extends DAOIssue {
         final String uri = "http://web:8080/setIssue/{issue}/{value}";
 
         Map<String, String> params = new HashMap<>();
-        params.put("issue", "articleDAO");
-        params.put("value", "Default");
+        params.put("issue", "controller");
+        params.put("value", "MemoryLeak");
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put ( uri, null, params);

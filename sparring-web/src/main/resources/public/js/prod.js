@@ -12,7 +12,7 @@ $(document).ready(function(){
      idp = idp.replace(/#/g, '');
     $.ajax({
       type:'GET',
-      url: 'http://sparring:8081/articles/' + idp,
+      url: '/articles/' + idp,
 
       success: function(data){
           $('#tbodyid').append('<h2 class="name">' + data["title"] + '</h2>' + '<hr>' + '<h3 class="price-container">'+ '$' + data["price"] + '<small>' + ' *includes tax'+'</small>'+'</h3>'+'<hr>'+'<div class="description description-tabs">'+'<ul id="myTab" class="nav nav-pills">'+'<li class="active">'+'</li>'+'</ul>'+'<div id="myTabContent" class="tab-content">'+'<div class="tab-pane fade active in" id="more-information">'+'<br>'+'<strong>'+'Product description'+'</strong>'+'<p>' + data["description"] + '</div>'+'</div>'+'</div>'+'<hr>');

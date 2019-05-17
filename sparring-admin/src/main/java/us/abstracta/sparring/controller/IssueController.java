@@ -1,8 +1,10 @@
 package us.abstracta.sparring.controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import us.abstracta.sparring.issues.Issue;
 import us.abstracta.sparring.issues.impl.BadSqlDAO;
+import us.abstracta.sparring.issues.impl.MemoryLeakIssue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class IssueController {
     public IssueController(){
         issues= new ArrayList<>();
         issues.add(new BadSqlDAO());
+        issues.add(new MemoryLeakIssue());
     }
 
     /* get all issues */
@@ -73,6 +76,16 @@ public class IssueController {
                 issue.setOff();
             }
         }
+        return true;
+    }
+
+    /* set an issue off */
+    @CrossOrigin(origins = "*")
+    @PostMapping("/restart")
+    public boolean restart() {
+        final String uri = "http://web:8080/restart";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForObject(uri, null, String.class);
         return true;
     }
 
