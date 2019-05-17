@@ -19,9 +19,7 @@
     <modules>
         <module>sparring-admin</module>
         <module>sparring-db</module>
-        <module>sparring-services</module>
         <module>sparring-web</module>
-        <module>sparring-web-admin</module>
     </modules>
 
 
