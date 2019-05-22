@@ -7,18 +7,25 @@ import us.abstracta.sparring.controller.Controller;
 import us.abstracta.sparring.dao.ArticleDAO;
 import us.abstracta.sparring.model.Article;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MemoryLeakController implements Controller {
 
     @Autowired
     ArticleDAO articleDAO;
+    List<Article> knownArticles = new ArrayList();
+
+    HashMap<CacheKey, Article> cacheArticles= new HashMap<CacheKey, Article>();
 
 
     /* get all the articles */
     @Override
     public List<Article> getArticles() {
-        return articleDAO.getArticles();
+        List<Article> articles=articleDAO.getArticles();
+        knownArticles.addAll(articles);
+        return articles;
     }
 
     /* get all the articles by cat */
@@ -30,20 +37,30 @@ public class MemoryLeakController implements Controller {
     /* get article by id */
     @Override
     public Article getArticleById(@PathVariable("id") int id) {
-        for (int i = 0; i < 100000; i++) {
-            finalizer f = new finalizer();
+        CacheKey key= new CacheKey(id);
+        Article article = cacheArticles.get(key);
+        if (article==null){
+            article=articleDAO.getArticleById(id);
+            cacheArticles.put(key,article);
         }
-        return articleDAO.getArticleById(id);
+        return article;
     }
 
 
-    public class finalizer {
-        @Override
-        protected void finalize() throws Throwable {
-            while (true) {
-                Thread.yield();
-            }
+
+    /*
+        This class should override hashCode() and equals() in order to works as a key
+     */
+    public class CacheKey{
+
+        private int id;
+
+        public CacheKey(int id){
+            id= id;
         }
+
+
+
 
     }
 
