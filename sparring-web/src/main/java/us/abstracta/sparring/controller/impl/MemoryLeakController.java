@@ -1,11 +1,15 @@
 package us.abstracta.sparring.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import us.abstracta.sparring.controller.Controller;
 import us.abstracta.sparring.dao.ArticleDAO;
 import us.abstracta.sparring.model.Article;
+import us.abstracta.sparring.model.PaymentInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +48,12 @@ public class MemoryLeakController implements Controller {
             cacheArticles.put(key,article);
         }
         return article;
+    }
+
+    /* purchase an article */
+    @Override
+    public ResponseEntity<PaymentInfo> purchase(@RequestBody PaymentInfo request) {
+        return new ResponseEntity<PaymentInfo>(request, HttpStatus.OK);
     }
 
 

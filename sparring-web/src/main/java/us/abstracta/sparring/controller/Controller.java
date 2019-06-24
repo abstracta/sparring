@@ -1,7 +1,9 @@
 package us.abstracta.sparring.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import us.abstracta.sparring.model.Article;
+import us.abstracta.sparring.model.PaymentInfo;
 
 import java.util.List;
 
@@ -23,6 +25,11 @@ public interface Controller {
     @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable("id") int id);
+
+    /* purchase an article */
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/purchase")
+    public ResponseEntity<PaymentInfo> purchase(@RequestBody PaymentInfo request);
 
 
 }
