@@ -437,6 +437,59 @@
 </head>
 
 <body>
+
+<!-- modal order -->
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">Place order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="quantity" class="form-control-label">Quantity:</label>
+                        <input type="text" class="form-control" id="quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-control-label">Name:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="billingAddress" class="form-control-label">Billing Address:</label>
+                        <input type="text" class="form-control" id="billingAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber" class="form-control-label">Card Number:</label>
+                        <input type="text" class="form-control" id="cardNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv" class="form-control-label">CVV:</label>
+                        <input type="text" class="form-control" id="cvv">
+                    </div>
+                    <div class="form-group">
+                        <label for="shippingAddress" class="form-control-label">Shipping Address:</label>
+                        <input type="text" class="form-control" id="shippingAddress">
+                    </div>
+                    <div class="form-group">
+                        <label id="errors" style="color:red" class="form-control-label"></label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onClick="purchaseOrder()" class="btn btn-primary">Purchase</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal order -->
+
+
   <!-- Navigation -->
   <nav style="height:90px" class="navbar navbar-toggleable-md bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -478,6 +531,8 @@
     <script src="vendor/tether/tether.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.js"></script>
     <script src="js/prod.js"></script>
+    <script src="dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
   
 
     <footer class="py-5 bg-inverse">

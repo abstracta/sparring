@@ -1,10 +1,13 @@
 package us.abstracta.sparring.controller.impl;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import us.abstracta.sparring.dao.ArticleDAO;
 import us.abstracta.sparring.model.Article;
 import us.abstracta.sparring.controller.Controller;
+import us.abstracta.sparring.model.PaymentInfo;
 
 import java.util.List;
 
@@ -30,6 +33,12 @@ public class ArticleController implements Controller {
     @Override
     public Article getArticleById(@PathVariable("id") int id) {
         return articleDAO.getArticleById(id);
+    }
+
+    /* purchase an article */
+    @Override
+    public ResponseEntity<PaymentInfo> purchase(@RequestBody PaymentInfo request) {
+        return new ResponseEntity<PaymentInfo>(request, HttpStatus.OK);
     }
 
 }
