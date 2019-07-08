@@ -3,7 +3,9 @@ package us.abstracta.sparring.controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import us.abstracta.sparring.issues.Issue;
+import us.abstracta.sparring.issues.impl.AcceptCountIssue;
 import us.abstracta.sparring.issues.impl.BadSqlDAO;
+import us.abstracta.sparring.issues.impl.MaxThreadsIssue;
 import us.abstracta.sparring.issues.impl.MemoryLeakIssue;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class IssueController {
         issues= new ArrayList<>();
         issues.add(new BadSqlDAO());
         issues.add(new MemoryLeakIssue());
+        issues.add(new MaxThreadsIssue());
+        issues.add(new AcceptCountIssue());
     }
 
     /* get all issues */
@@ -29,7 +33,7 @@ public class IssueController {
 
     }
 
-    /* get all active issues */
+    /* get all active issues*/
     @CrossOrigin(origins = "*")
     @GetMapping("/issues/active")
     public List<Issue> getActiveIssues() {
@@ -42,17 +46,31 @@ public class IssueController {
         return activeIssues;
     }
 
-    /* get all inactive issues */
+
+    /* get all common inactive issues */
     @CrossOrigin(origins = "*")
-    @GetMapping("/issues/inactive")
-    public List<Issue> getInactiveIssues() {
-        List<Issue> inactiveIssues= new ArrayList();
+    @GetMapping("/issues/inactive/common")
+    public List<Issue> getCommonInactiveIssues() {
+        List<Issue> commonInactiveIssues= new ArrayList();
         for (Issue issue : issues) {
-            if (!issue.isOn()){
-                inactiveIssues.add(issue);
+            if (!issue.isOn() && !issue.hasInput()){
+                commonInactiveIssues.add(issue);
             }
         }
-        return inactiveIssues;
+        return commonInactiveIssues;
+    }
+
+    /* get all input inactive issues */
+    @CrossOrigin(origins = "*")
+    @GetMapping("/issues/inactive/input")
+    public List<Issue> getInputInactiveIssues() {
+        List<Issue> inputInactiveIssues= new ArrayList();
+        for (Issue issue : issues) {
+            if (!issue.isOn() && issue.hasInput()){
+                inputInactiveIssues.add(issue);
+            }
+        }
+        return inputInactiveIssues;
     }
 
     /* set an issue on */
@@ -62,6 +80,18 @@ public class IssueController {
         for (Issue issue : issues) {
             if (id.equals(issue.getName())){
                 issue.setOn();
+            }
+        }
+        return true;
+    }
+
+    /* set an issue on */
+    @CrossOrigin(origins = "*")
+    @PutMapping("/issues/{id}/active/{input}")
+    public boolean setInputIssueOn(@PathVariable("id") String id, @PathVariable("input") String input) {
+        for (Issue issue : issues) {
+            if (id.equals(issue.getName())){
+                issue.setOn(input);
             }
         }
         return true;

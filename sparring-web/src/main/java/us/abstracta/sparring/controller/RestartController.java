@@ -9,6 +9,7 @@ import us.abstracta.sparring.SparringServicesApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
@@ -24,11 +25,16 @@ public class RestartController {
     public void setIssue(@PathVariable("issue") String issue, @PathVariable("value") String value) {
         try {
             File f = new File("application.properties");
-            OutputStream out = new FileOutputStream( f );
             Properties props = new Properties();
+            if (f.exists()){
+                FileInputStream in = new FileInputStream( f );
+                props.load(in);
+            }
             props.setProperty(issue, value);
             DefaultPropertiesPersister p = new DefaultPropertiesPersister();
-            p.store(props, out, "Set value " + value + "in issue " + issue);
+            OutputStream out = new FileOutputStream( f );
+            p.store(props, out, "Properties that overrides the values of the application.properties inside the jar");
+
         } catch (Exception e ) {
             e.printStackTrace();
         }

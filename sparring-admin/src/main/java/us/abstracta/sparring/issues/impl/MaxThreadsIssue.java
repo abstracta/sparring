@@ -3,26 +3,25 @@ package us.abstracta.sparring.issues.impl;
 import us.abstracta.sparring.utils.IssueHelper;
 
 
-public class BadSqlDAO extends DAOIssue {
+public class MaxThreadsIssue extends TomcatIssue {
 
     private boolean on;
-    private String name="BadSqlDAO";
+    private String name="Tomcat-Max Threads";
     private String description;
 
-    public BadSqlDAO(){
-        setDescription("Use of inefficient SQL queries in order to increase response time");
+    public MaxThreadsIssue(){
+        setDescription("The maximum amount of worker threads can be edited. Default value 200.");
     }
 
+    public void setOn(){}
 
-    public void setOn(){
-        IssueHelper.sendRequestToSetIssue("articleDAO", "BadSql");
+    public void setOn(String input){
+        IssueHelper.sendRequestToSetIssue("server.tomcat.max-threads", input);
         on=true;
     }
 
-    public void setOn(String input){ }
-
     public void setOff(){
-        IssueHelper.sendRequestToSetIssue("articleDAO", "Default");
+        IssueHelper.sendRequestToSetIssue("server.tomcat.max-threads", "200");
         on=false;
 
     }
@@ -31,7 +30,7 @@ public class BadSqlDAO extends DAOIssue {
         return on;
     }
 
-    public boolean hasInput(){return false;}
+    public boolean hasInput(){return true;}
 
     public String getDescription() {
         return description;
