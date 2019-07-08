@@ -1,9 +1,7 @@
 package us.abstracta.sparring.issues.impl;
 
-import org.springframework.web.client.RestTemplate;
+import us.abstracta.sparring.utils.IssueHelper;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MemoryLeakIssue extends ControllerIssue {
     private boolean on;
@@ -16,35 +14,22 @@ public class MemoryLeakIssue extends ControllerIssue {
 
 
     public void setOn(){
-        final String uri = "http://web:8080/setIssue/{issue}/{value}";
-
-        Map<String, String> params = new HashMap<>();
-        params.put("issue", "controller");
-        params.put("value", "MemoryLeak");
-
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put ( uri, null, params);
-
+        IssueHelper.sendRequestToSetIssue("controller", "MemoryLeak");
         on=true;
     }
 
+    public void setOn(String input){ }
+
     public void setOff(){
-        final String uri = "http://web:8080/setIssue/{issue}/{value}";
-
-        Map<String, String> params = new HashMap<>();
-        params.put("issue", "controller");
-        params.put("value", "MemoryLeak");
-
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put ( uri, null, params);
-
+        IssueHelper.sendRequestToSetIssue("controller", "Default");
         on=false;
-
     }
 
     public boolean isOn() {
         return on;
     }
+
+    public boolean hasInput(){return false;}
 
     public String getDescription() {
         return description;
